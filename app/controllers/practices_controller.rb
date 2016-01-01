@@ -42,7 +42,11 @@ class PracticesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_practice
-      @practice = Practice.find(params[:id])
+      if params[:id]
+        @practice = Practice.find(params[:id])
+      else
+        @practice = Practice.find_by(access_hash: params[:access_hash])
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
