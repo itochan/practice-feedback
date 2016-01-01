@@ -16,6 +16,7 @@ class PracticesController < ApplicationController
   # POST /practices
   def create
     @practice = Practice.new(practice_params)
+    @practice.file = params[:file]
 
     if @practice.save
       render json: @practice, status: :created, location: @practice
@@ -46,6 +47,6 @@ class PracticesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def practice_params
-      params.require(:practice).permit(:hash, :title)
+      params.require(:practice).permit(:title, :file)
     end
 end
