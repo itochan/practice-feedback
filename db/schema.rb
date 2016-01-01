@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101132250) do
+ActiveRecord::Schema.define(version: 20160101145214) do
 
   create_table "practices", force: :cascade do |t|
-    t.string   "hash"
+    t.string   "access_hash"
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "file"
   end
 
