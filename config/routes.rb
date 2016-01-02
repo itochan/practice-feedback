@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  resources :practices, only: [:create, :destroy]
+  namespace :practices do
+    scope ':access_hash' do
+      get '', action: 'show'
+      resources :comments, controller: '/comments' do
+      end
+    end
+  end
 
-  get 'practices/:access_hash', to: 'practices#show'
+  resources :practices, only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

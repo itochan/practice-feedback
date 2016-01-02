@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101145214) do
+ActiveRecord::Schema.define(version: 20160102094845) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "practice_id"
+    t.integer  "playback_time"
+    t.string   "text"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["practice_id"], name: "index_comments_on_practice_id"
+  end
 
   create_table "practices", force: :cascade do |t|
     t.string   "access_hash"
