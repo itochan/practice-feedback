@@ -1,5 +1,5 @@
-// const DOMAIN = 'http://localhost:3000';
-const DOMAIN = 'https://koefb.itochan.jp';
+const DOMAIN = 'http://localhost:3000';
+// const DOMAIN = 'https://koefb.itochan.jp';
 
 $(function() {
   $('#upload').submit(function() {
@@ -13,7 +13,7 @@ $(function() {
       processData: false,
       contentType: false
     }).done(function(response) {
-      location.href = '/play.html?' + response.access_hash;
+      location.href = `play.html?${response.access_hash}`;
     });
   });
 });

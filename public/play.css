@@ -1,0 +1,19 @@
+#viewer {
+  position: relative;
+  display: inline-block;
+}
+
+#viewerComments {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 40px;
+  left: 0;
+}
+
+.js-marquee {
+  float: none !important;
+  display: inline;
+  margin-right: 16px;
+  font-size: 16pt;
+}
