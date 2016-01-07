@@ -1,14 +1,17 @@
+// const DOMAIN = 'http://localhost:3000';
+const DOMAIN = 'https://koefb.itochan.jp';
+
 $(function() {
   var hash = location.search.substr(1);
 
-  $.ajax(`/practices/${hash}`)
+  $.ajax(`${DOMAIN}/practices/${hash}`)
   .done(function(body) {
     $('#title').text(body.title);
     $('#createdAt').text(new Date(body.created_at).toLocaleString());
     $('#practice').prop('src', body.file.url);
   });
 
-  $.ajax(`/practices/${hash}/comments`)
+  $.ajax(`${DOMAIN}/practices/${hash}/comments`)
   .done(function(body) {
     var tbody = $('#comments tbody');
     tbody.children().remove();
@@ -24,7 +27,7 @@ $(function() {
 
   $('#commentForm').submit(function() {
     $.ajax({
-      url: `/practices/${hash}/comments`,
+      url: `${DOMAIN}/practices/${hash}/comments`,
       method: 'post',
       contentType: 'application/json',
       processData: 'false',
