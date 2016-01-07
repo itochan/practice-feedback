@@ -4,7 +4,7 @@ $(function() {
   $.ajax(`/practices/${hash}`)
   .done(function(body) {
     $('#title').text(body.title);
-    $('#createdAt').text(body.created_at);
+    $('#createdAt').text(new Date(body.created_at).toLocaleString());
     $('#practice').prop('src', body.file.url);
   });
 
