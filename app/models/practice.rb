@@ -1,4 +1,6 @@
 class Practice < ApplicationRecord
+  has_many :comment
+
   before_create :generate_access_hash
 
   mount_uploader :file, PracticeUploader

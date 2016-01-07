@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    @comments = Comment.all
+    @comments = Practice.find_by(access_hash: params[:access_hash]).comment
 
     render json: @comments
   end
