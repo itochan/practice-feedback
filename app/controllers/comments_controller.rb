@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   # GET /comments
   def index
-    @comments = Practice.find_by(access_hash: params[:access_hash]).comment
+    @comments = Practice.find_by(access_hash: params[:access_hash]).comment.order(:playback_time)
 
     render json: @comments
   end
