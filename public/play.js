@@ -2,9 +2,10 @@ const DOMAIN = 'http://localhost:3000';
 // const DOMAIN = 'https://koefb.itochan.jp';
 
 var comments;
+var hash;
 
 $(function() {
-  var hash = location.search.substr(1);
+  hash = location.search.substr(1);
 
   $.ajax(`${DOMAIN}/practices/${hash}`)
   .done(function(body) {
@@ -46,8 +47,18 @@ function loadComments(hash) {
       var minutes = (time - seconds) / 60;
       var formattedTime = `${minutes}:${seconds}`;
 
-      tbody.append(`<tr><td>${formattedTime}</td><td>${element.text}</td></tr>`);
+      tbody.append(`<tr id='comment-${element.id}'><td>${formattedTime}</td><td>${element.text}</td>` +
+        `<td><input type='button' onclick='deleteComment(${element.id}); return false;' value='削除'></td></tr>`);
     });
+  });
+}
+
+function deleteComment(id) {
+  $.ajax({
+    url: `${DOMAIN}/practices/${hash}/comments/${id}`,
+    method: 'delete'
+  }).done(function () {
+    $(`#comment-${id}`).remove();
   });
 }
 
