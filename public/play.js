@@ -13,6 +13,12 @@ $(function() {
     $('#practice').prop('src', `${DOMAIN}${body.file.url}`);
   });
 
+  $('#commentText').keypress(function (e) {
+    if (e.keyCode == 13) {
+      $('#commentForm').submit();
+    }
+  });
+
   $('#commentForm').submit(function() {
     $.ajax({
       url: `${DOMAIN}/practices/${hash}/comments`,
@@ -26,6 +32,7 @@ $(function() {
     })
     .done(function(body) {
       loadComments(hash);
+      $('#commentText').val('');
     });
   });
 
