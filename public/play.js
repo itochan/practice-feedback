@@ -13,6 +13,27 @@ $(function() {
     $('#practice').prop('src', `${DOMAIN}${body.file.url}`);
   });
 
+  $('#commentForm').submit(function() {
+    $.ajax({
+      url: `${DOMAIN}/practices/${hash}/comments`,
+      method: 'post',
+      contentType: 'application/json',
+      processData: 'false',
+      data: JSON.stringify({
+        playback_time: Math.floor($('#practice')[0].currentTime),
+        text: $('#commentText').val()
+      })
+    })
+    .done(function(body) {
+      loadComments(hash);
+    });
+  });
+
+  loadComments(hash);
+  playVideo();
+});
+
+function loadComments(hash) {
   $.ajax(`${DOMAIN}/practices/${hash}/comments`)
   .done(function(body) {
     comments = body;
@@ -27,25 +48,7 @@ $(function() {
       tbody.append(`<tr><td>${formattedTime}</td><td>${element.text}</td></tr>`);
     });
   });
-
-  $('#commentForm').submit(function() {
-    $.ajax({
-      url: `${DOMAIN}/practices/${hash}/comments`,
-      method: 'post',
-      contentType: 'application/json',
-      processData: 'false',
-      data: JSON.stringify({
-        playback_time: Math.floor($('#practice')[0].currentTime),
-        text: $('#commentText').val()
-      })
-    })
-    .done(function(body) {
-      console.log(body);
-    });
-  });
-
-  playVideo();
-});
+}
 
 var timerId;
 
