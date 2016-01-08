@@ -1,5 +1,5 @@
-const DOMAIN = 'http://localhost:3000';
-// const DOMAIN = 'https://koefb.itochan.jp';
+// const DOMAIN = 'http://localhost:3000';
+const DOMAIN = 'https://koefb.itochan.jp';
 
 var comments;
 var hash;
